@@ -13,3 +13,15 @@
 
 1_, 2_, 3_, 4_, 5_, 用到的都是C语言的库函数
 7_, 8_, 9_, 10_, 11_, 12, 用到的都是 Linux 操作系统提供的系统调用
+
+git init
+git add README.md
+git commit -m 'first commit'
+git remote add origin git@github.com:forbearing/C-notes.git
+git push -u origin master
+	# create a new repository
+
+git remote add origin git@github.com:forbearing/C-notes.git
+git push -u origin master
+
+
