@@ -1,0 +1,29 @@
+1:预处理操作符
+	1:在C语言中由两个预处理操作符 # 和 ##, 它们可以在 #define 中使用
+	2:操作符 # 通常称为字符串化的操作符, 它把其后 的串编程用双引号包围的串
+	3:连接操作符 ## 可以把两个独立的字符串连接成一个字符串
+	4:示例
+		#define PRINT(FORMAT,VALUE) \
+			printf("the value of" #VALUE "is" FORMAT "\n", VALUE)
+		PRINT("%d", x+3);
+		#define ADD_TO_SUN(sun_number,value) \
+			sun##sun_number += value;
+		ADD_TO_SUN(5,25);
+			// sun5 += 25;
+
+
+2:预处理宏和其他指令
+	1:预处理宏
+		 __FILE__			进行编译的源文件名
+		 __LINE__			文件当前的行号
+		 __DATE__			文件被编译的日期(格式为: "Mmm dd yyyy")
+		 __TIME__			文件被编译的时间(格式为: "hh:mm:ss")
+		 __func__			当前所在函数名
+	2:其他预处理指令
+		#error				输出错误信息
+		#line				设置文件从第几行开始计算
+		#pragma				输出注意信息,不影响可执行文件的生成
+
+
+示例:
+	symbol.c

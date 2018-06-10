@@ -1,0 +1,54 @@
+1:当多个用户共同使用,操作一个文件时, Linux 通常采用的方法是给文件上锁,来避免共享
+  资源产生竞争的状态
+2:文件锁按功能分为
+	1:共享读锁
+		1:文件描述符必须读打开
+		2:一个进程上了读锁,其他进程也可以上读锁进行读取
+	2:独占写锁
+		1:文件描述符必须写打开
+		2:一个进程上了写锁,其他进程就不能上写锁和读锁进行读写操作
+3:文件锁按类型分为建议锁和强制性锁, 建议性锁要求上锁文件的进程都要检测是否由锁
+  存在,并尊重已有的锁,强制性锁由内核和系统执行的锁
+4:fcntl 不仅可以实施建议性锁而且可以实施强制性锁
+
+
+5:fcntl 函数
+	#include <unistd.h>
+	#include <fcntl.h>
+	int fcntl(int fd, int cmd, struct flock* lock);
+	cmd: F_SETLK, F_GETLK, F_SETLKW(阻塞版本)
+	struct flock{
+		short l_type;		// F_RDLCK, F_WRLCK, R_UNLCK
+		off_t l_start;		// offset in bytes, relative to 1_whence
+		short l_whence;		// SEEK_SET, SEEK_CUR, SEEK_END
+		off_t l_len;		// length, in bytes; o means lock to EOF
+		pid_t l_pid;		// returned with F_GETLK
+	}
+		l_type
+			锁类型, F_RDLCK(共享读锁), F_WRLCK(独占写锁)或F_UNLCK(解锁一个区域)
+		l_start, l_whence
+			要加锁或解锁的区域的起始位置,由 l_start 和 l_whence 两者决定.
+			l_start 是相对位移量, l_whence 则决定相对位移量的起点
+		l_len: 表示区域的长度
+		l_pid: 进程pid
+
+
+6:加锁和解锁区域的注意点
+	1:该区域可以在当前文件尾端处开始或越过其尾端处开始,但不能在文件起始位置之前
+	  开始或越过该起始位置
+	2:如若 l_len 为0, 则表示锁的区域从其起点(由l_start和l_whence决定)开始直至
+	  最大可能位置为止. 也就是不管添加到该文件中多少数据,它都处于锁的范围
+	3:为了锁整个文件,通常的方法是将 l_start 说明为0, l_whence 说明为 SEEK_SET,
+	  l_len 说明为 0
+
+
+8:锁的继承和释放
+	1:一个进程终止,它所建立的锁全部释放
+	2:关闭一个文件描述符,此进程对应该文件的所有的锁释放
+	3:子进程不继承父进程的锁
+	4:执行 exec 以后, 新程序可以选择需要是否继承原来执行进程的锁
+
+
+示例:
+	io.h io.c	lock_write.c
+	lock_my.c

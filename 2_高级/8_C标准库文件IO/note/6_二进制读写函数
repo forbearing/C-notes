@@ -1,0 +1,23 @@
+1:fread 和 fwrite 函数
+	int fread(void *buffer, int number_bytes, int count, FILE *fp);
+	int fwrite(void *buffer, int number_bytes, int count, FILE *fp);
+	1:功能: 读写数据块,一般用于二进制文件的输入输出
+	2:返回: 成功返回读写的元素的个数, 失败或到文件尾返回 EOF
+	3:参数:
+		buffer: 一个指向要进行输入输出数据存储区的通用指针
+		num_bytes: 每个要读写的元素的字节数
+		count: 要读写的元素个数
+		fp: 要读写的文件指针
+
+
+2:fread  和 fwrite 函数的使用注意点
+	1:用 frpintf 和 fscanf 函数对磁盘文件读写,使用方便,容易理解,但由于在输入时
+	  需要将 ASCII 码转换为二进制,在输出时有需要将二进制转换成字符,花费时间较多
+	2:以此,在内存与磁盘排频繁交换数据的情况下,最好不用 fprintf he fscanf 函数,
+	  而用fread 和 fwrite 函数
+
+
+3:示例:
+	fread_fwrite.c		student.txt		
+	feof.c
+

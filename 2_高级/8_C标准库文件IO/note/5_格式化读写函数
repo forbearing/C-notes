@@ -1,0 +1,35 @@
+1:fscanf 和 fprintf 函数
+	int fscanf(FILE *fp, const char *format, ...);
+	int fprintf(FILE *fp, const char *format, ...);
+	1:功能: 按 format 格式对 fp 指向的文件金喜 I/O 操作
+	2:返回: 成功返回 I/O 的字节数, 失败或到文件末尾返回 EOF
+	3:可针对标准输入输出
+	4:示例:
+		fscanf(fp, "%d%f", &i, &t);		// 若文件中由3和4,则将3放入i,4放入t
+		fprintf(fp, "%d,%i",i,t);		// 按i和t按%d,%f格式输出到fp文件
+
+
+2:sscanf 和 sprintf 函数
+	int sscanf(char const *str, char const *format, ...);
+	int sprintf(char const *str, char const *format, ...);
+	1:功能: 按 format 格式对 str 指向的字符数组进行 I/O 操作
+	2:返回: 成功返回 I/O 的字节数, 失败返回 EOF
+	3:示例:
+		char *str = "100 iotek";
+		int id;
+		char name[50];
+		sscanf(str, "%d %s", &id, name);
+		char stu[100];
+		sprintf(stu, "%d %s", id, name);
+
+
+3:示例:
+	student_score.c		score.txt
+	sscanf_sprintf.c	
+
+总结:
+	fgetc fputc				返回: 成功返回读入/写入的字符,失败返回 EOF
+	fgets fputs				fgets返回写入的字符/NULL, fputs返回0/EOF
+	fscanf fprintf			返回: IO字节数/EOF
+	sscanf sprintf			返回: IO字节数/EOF
+	fread fwrite			返回: 读取写入的字符数/EOF

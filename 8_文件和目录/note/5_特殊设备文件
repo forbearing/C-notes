@@ -1,0 +1,10 @@
+1:每个文件系统所在的存储设备都由主,次设备号表示
+2:major 和 minor 宏可用来得到主,次设备号
+3:只有字符特殊文件和块特殊文件才有 st_rdev 值
+4:所有文件都有 st_dev, 但只有字符/块特殊文件才有 st_rdev 值
+5:宏 major 和 minor 的声明已从 <sys/types.h> 迁移到 <sys/sysmacros.h> 头文件中
+
+
+
+示例
+	file_dev.c

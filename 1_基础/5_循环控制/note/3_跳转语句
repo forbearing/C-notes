@@ -1,0 +1,29 @@
+1:跳转语句的概念
+	1:跳转语句用于程序的转义控制,改变程序的执行流程,转移到指定之处
+	2:与程序转移有关的跳转包括 break 语句, continue 语句,以及 goto 语句	
+	3:break 和 continue 语句主要和循环相关
+	4:goto 语句在C语言中有,它是无条件跳转,所以可以完全替代 break 和 continue
+	  语句,一般要慎用
+
+
+2:break 语句的使用
+	1:中断循环语句的执行,用于 switch 语句, for 循环, while 循环, do-while 循环中
+	2:break 用于 for, while 和 do-while 循环中时,可使程序终止当前的循环而执行
+	  循环后面的语句
+	3:break 用于 switch 语句中时,可使程序跳出当前的 switch 语句而执行 switch 
+	  以后的语句
+	4:如果已执行 break 语句,就不会执行循环体或 switch 语句中位于 break 后的语句
+	5:break 语句通常在循环中与条件语句一起使用,若条件值为真,将跳出循环,控制流
+	  转向循环后面的语句
+	6:在多层循环或 switch 语句中,一个 break 语句只向外跳一层
+
+
+3:continue 语句的使用
+	1:continue 语句的作用是跳过循环体中剩余的语句而执行下一次循环
+	2:continue 语句只用在 for, while, do-while 循环中,常与 if 条件语句一起使用,
+	  用来加速循环.
+	3:对于 while 和 do-while 循环, continue 语句执行之后的动作是条件判断.
+	  对于 for 循环,随后的动作是循环变量修改
+
+
+4:各种循环的嵌套和跳转

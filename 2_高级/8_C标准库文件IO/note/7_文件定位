@@ -1,0 +1,33 @@
+1:文件定位的概念
+	1:一般对文件的读写方式都是顺序读写,即读写文件只能从头开始,顺序读写各个数据
+	2:在实际问题中经常要求只读写文件中某一指定的部分,为了解决这个问题可移动文件
+	  内部的位置指针到需要读写的位置,再进行读写,这种读写称为随机读写
+	3:实现随机读写的关键是要按要求移动文件位置指针,这称为文件定位
+
+
+2:fseek 函数
+	void fseek(FILE *fp, long offset, int whence);
+	1:功能: 使fp所指文件的位置指针重置到指定位置(从 whence位置移动 offset个字节)
+	2:返回: 成功返回0, 失败返回-1
+	3:offset: 位移量,表示移动的字节数
+	4:whence 的值
+		SEEK_SET		文件首				0		offset 非负
+		SEEK_CUR		文件当前读写位置	1		offset 可正可负
+		SEEK_END		文件尾				2		offset 可正可负
+
+
+3:其他函数
+	1:rewind 函数
+		void rewind(FILE *fp)
+		1:功能: 使文件位置指针重新返回文件首
+	2:remove 函数
+		int remove(const char *filename)
+		1:功能: 用于删除指定文件
+	3:fflush 函数
+		void fflush(FILE *fp);
+		功能: 刷新缓冲区,如果打开文件进行读操作,该函数将清空文件的输入缓冲区,
+			  如果打开文件进行写操作时,该函数将文件的输出缓冲区内容写入文件中. 
+
+
+示例:
+	fseek.c		student.bin

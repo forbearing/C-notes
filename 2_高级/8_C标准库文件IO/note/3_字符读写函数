@@ -1,0 +1,34 @@
+1:getchar 和 putchar 函数
+	1:getchar 函数
+		int getchar();
+		1:功能: 从标准输入读取一个字符
+		2:返回:成功返回读取的字符,失败返回 EOF
+	2:putchar 函数
+		int putchar(int ch);
+		1:功能: 将一个字符 ch 写入到标准输出
+		2:返回: 成功返回写入的字符 ch, 失败返回 EOF
+
+
+2:fgetc 和 fputc 函数
+	1:fgetc 函数
+		int fgetc(FILE *fp)
+		1:功能: 从fp 指向的文件中读取一个字符
+		2:返回: 成功返回读取的字符,失败或到文件末尾返回 EOF(-1)
+		3:可针对标准输入操作
+	2:fputc 函数
+		int fputc(int ch, FILE *fp)
+		1:功能: 把一字符ch写入fp指向的文件中
+		2:返回: 成功返回写入的字符ch, 失败返回 EOF
+
+
+3:getc 和 putc 函数
+	1:与 fgetc 和 fputc 函数原型和功能相同
+	2:建议使用 fgetc 和 fputc 函数
+
+
+示例
+	getchar_putchar.c
+	copy.c						// 案例:文件拷贝,fgetc 和 fputc
+	lines_chars.c				// 案例:统计文件的行和字符数
+	words.c						// 案例:统计文件单词数
+	merge.c						// 案例:合并两个文件,按字母顺序输出到另一个文件

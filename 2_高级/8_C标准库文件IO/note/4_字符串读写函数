@@ -1,0 +1,23 @@
+1:fgets 函数
+	char * fgets(char *str, int size, FILE *fp);
+	1:功能: 从 fp 所指向的文件中至多读取 size-1 个字符,放入 str 指向的字符数组中
+			如果在读入 size-1 个字符结束钱与换行符或 EOF, 读入即结束,字符串读入
+			后在最后追加一个 '\0' 字符
+	2:返回: 成功返回 str 指针, 失败返回 NULL
+	3:可针对标准输入操作
+
+
+2:fputs 函数
+	int fputs(char *str, FILE *fp)
+	1:功能: 把 str 指向的字符串或字符数组写入 fp 指向的文件中
+	2:返回: 成功返回0, 出错返回 EOF
+	3:可针对标准输出操作
+
+
+3:gets 和 puts 函数
+	1:gets 和 puts 值针对标准输入标准输出操作
+	2:编译会出现警告,不建议使用
+
+
+示例
+	copy2.c						// 文件拷贝

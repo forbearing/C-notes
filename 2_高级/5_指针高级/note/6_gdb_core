@@ -1,0 +1,25 @@
+1:在 Linux 中应用程序运行崩溃(内存溢出/段错误)之后一般会产生 core 文件, core 文
+  件是通过 Linux 系统中的工具 core dump 来产生的, core dump 又称为核心转储
+  
+2:当程序运行过程中发生一场崩溃时,由 core dump 把运行承租当前的内存状况存储在一个
+  core 文件中. 根据 core 文件查找问题的所在, 并做相应的分析和调式,是非常重要的
+
+3:Segment falut(段错误)是应用程序崩溃的主要原因,可以通过 gdb 和核心转储(core 
+  dump) 定位段错误位置.
+
+
+4:gdb core 的使用流程
+	1:打开 core dump 开关
+		ulimit -c			// 查看 core 文件的大小, 系统默认为0
+		ulimit -c size		// 设置 core 文件的大小, 单位为 Kbyte
+	2:编译程序加上 -g 编译选项
+	3:运行可执行文件
+		运行过程中如果有问题会产生 core 文件
+	4:定位段错误位置
+		gdb 可执行文件 core文件
+		使用 gdb 载入调式程序和问题发生时产生的 core 文件
+
+
+
+示例:
+	gdb_core.c

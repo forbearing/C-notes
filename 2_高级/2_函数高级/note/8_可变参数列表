@@ -1,0 +1,33 @@
+1:可变参数列表的概念
+	1:在C语言编程中有时会遇到一些参数个数可变的函数,如 scanf() 函数. 
+		其函数原型为: int scanf(const char* format, ...);
+		1:除了参数 format 固定以外,后面跟的参数的个数和类型是可变的
+		  (用三个点"..."作参数占位符)
+	2:"..."称为可变参数列表,可以用来接受个数和类型不确定的实参
+
+
+2:可变参数列表的使用
+	1:可变参数列表在C语言中可通过三个宏(va_start, va_arg, va_end)和一个类型
+	  (_list)实现的, 它们都定义在头文件 stdarg.h 中
+	2:宏 va_start 的原型
+		void va_start(va_list ap, paramN);
+		1:参数
+			va_list: 存储参数的类型信息
+			ap: 可变参数列表地址
+			paramN: 确定的参数
+		2:功能: 初始化可变参数列表
+	3:宏 va_arg 的原型
+		type va_arg(va_list ap, type);
+		1:type: 参数的类型
+		2:功能: 返回下一个参数的值
+	4:宏 va_end 的原型
+		void va_end(va_list ap);
+		2:功能: 关闭初始化列表(将可变参数列表清空)
+	5:可变参数列表的使用方式:
+		1:用 va_start 初始化可变参数列表, 用 va_arg 逐个获取参数的值, 最后用
+		  va_end 将可变参数列表清空
+
+
+
+示例:
+	average.c	(可变参数列表)

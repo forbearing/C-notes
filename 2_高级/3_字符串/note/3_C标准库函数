@@ -1,0 +1,57 @@
+1:stdlib.h 中声明的整型算数,随机数函数和转换函数
+	int abs(int value);		long labs(long value);
+		返回指定数值的绝对值
+	int rand(void);
+		返回0 和 RAND_MAX(至少为32767)之间的伪随机数
+	void srand(unsigned int seed);
+		避免每次运行获取相同的随机素序列
+	double drand48(void);
+		返回 0-1 之间 double 类型的随机数
+	int atoi(char const* string);
+		字符串数字转换成 int 类型
+	long atol(char const *string);
+		字符串数字转换成 long 类型
+	double atof(char const *string);
+		字符串数字转换成 double 类型
+
+
+2:math.h 中声明的数学公式函数
+	1:三角函数
+		double sin(double angle)		// 正弦
+		double cos(double angle)		// 余弦
+		double tan(double angle)		// 正切
+		double asin(double angle)		// 反正弦
+		double acos(double angle)		// 反余弦
+		double atan(double angle)		// 反正切
+	2:对数和指数函数
+		double exp(double x);			// 返回 e 的 x 次幂
+		double log(double x);			// 返回以 e 为底的对数,即自然对数
+		double long10(double x);		// 返回 x 以 10为底的对数
+	3:幂
+		double pow(double x, double y)	// 返回 x 的 y 此方
+		double sqrt(double x)			// 返回 x 的平方根
+	4:底数,顶数,截断,近似,绝对值,余数
+		double floor(double x);			// 底数
+		double ceil(double x);			// 顶数
+		double trunc(double x);			// 截断
+		double round(double x);			// 近似
+		double fabs(double x);			// 绝对值
+		double fmod(doublex, double y);	// 余数
+
+
+3:time.h 中声明的时间日期函数
+	time_t time(time_t *data_time);
+		设置时间(返回距 1970年1月1日00:00经过的秒数)
+		time(NULL);				// 返回当前时间
+		time_t current
+		time(&current)			// 将当前时间存储在 current 变量中
+		
+	char *ctime(const time_t *clock);
+		将时间转换成一个字符数组
+		ctime(&current)
+
+
+
+示例
+	stdfun.c					// 库函数举例
+	timer.c						// 案例:定时器

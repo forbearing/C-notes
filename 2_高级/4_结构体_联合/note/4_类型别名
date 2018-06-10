@@ -1,0 +1,40 @@
+1:类型定义副 typedef
+	1:C语言不仅提供了丰富的数据类型,而且还允许由用户自己定义类型说明副,也就是
+	  允许由用户为数据类型取 "别名", 类型定义符 typedef 可用来完成此功能
+	2:类型定义符 typedef 的语法
+		typedef 原类型名 新类型名(类型别名);
+		1:用 typedef 定义数组,指针,结构体等类型别名将带来很大的方便,不仅使程序
+		  书写简单而且使意义更为明确,因而增强了可读性
+		2:typedef 定义示例:
+			typedef float Dollars;
+			Dollars cash_in cash_out;
+			typedef struct student{
+				char name[20];
+				int age;
+				char sex;
+			} Stu;
+			Stu stu = {"Jack", 20, 'F'}
+
+
+2:#define 定义类型别名
+	1:typedef 定义类型别名的功能也可以用预处理指令 #define 即宏定义来代替
+	2:预处理指定 #define 定义类型别名的语法
+		#define 新类型名 原类型名
+		1:#define 指令结尾没有分号
+		2:示例
+			#define INTEGER int
+			INTEGER a = 100;
+
+
+3:typedef 和 #define 的区别
+	1:#define 指令是在预处理阶段完成的,而 typedef 则是在编译时完成的,后者更灵活
+	2:#define 无法正确处理指针类型, typedef 更为合适
+		typedef char* ptr_char;
+		ptr_char a,b,c
+		#define PTR_CHAR char*		// a,b,c 为指针类型
+		PTR_CHAR a,b,c;				// a为指针, b和c为 char 类型
+
+
+示例:
+	typedef.c
+	clock.c				// 案例:时钟

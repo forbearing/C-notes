@@ -1,0 +1,91 @@
+1:概述
+	1:C语言提供了丰富的字符串处理函数,大致可分为字符串的输入,输出,合并,修改,比较
+	  转换,赋值,搜索几类,使用这些函数可大大减轻编程的负担
+	2:用于输入输出的字符串函数,在使用前包含头文件爱呢 "stdio.h", 使用其他字符串
+	  函数则应包含头文件 "string.h"
+
+2:字符串输出函数
+	int puts(char const *strPtr);
+		1:把字符指针strPtr指向的字符串输出到显示器,即在屏幕上显示该字符串
+		2:传入的实参可以是字符数组名或指向字符串的字符指针
+	fputs(array, stdout);
+
+3:字符串输入函数
+	char *gets(char (strPtr));
+		1:从标准输入设备键盘上输入一个字符串存放到指针 strPtr 指向的字符数组中
+		2:用scanf 函数读入字符串时不允许输入中存在空格,否则自动终止读入字符串,
+		  仅读取到空格前的字符串
+	fgets(array, sizeof(array), stdin)
+
+4:获取字符串长度函数
+	int strlen(char const *string)
+		1:传入的实参可以是字符数组或执行字符串的字符指针
+		2:返回字符的个数不包括结束符 '\0'
+
+5:字符串拷贝函数
+	char *strcpy(char* des, char* src);
+	char *strncpy(char* des, char* src, int size);
+		1:把 src 指向的字符串拷贝 des 指向的字符串数组中,结束符 '\0' 也一同拷贝,
+		  函数返回新字符串的首地址. 加上 szie 参数也可以拷贝指定长度的字符串
+		2:传入的实参 src 可以是字符串也可以是字符数组, 但 des 建议是字符数组
+
+6:字符串连接函数
+	char* strcat(const char* str1, const char* str2);
+	char* strncat(char* str1, const char* str2, int size);
+		1:把 str2 指向的字符串连接到 str1 指向的字符串后面,并删除 str1 指向的字
+		  符串后面的结束符 '\0'. 函数返回 str1 指向的字符串首地址
+
+7:字符串比较函数
+	int strcmp(const char* str1, const char* str2);
+	int strncmp(const char* str1, const char* str2);
+		1:安装 ASCII 码值比较两个字符串,并由函数返回值确定比较结果
+		2:str1 == str2,	返回值等于0
+		3:str1 > str2,	返回值大于0
+		4:str1 < str2,	返回值小于0
+
+8:字符串分割函数
+	char* strtok(char*str, const char* delimiters);
+		1:根据 delimiters 指向的分隔符将 str 指向的字符串分割成若干个字符串,函数
+		  返回的是分割出的子字符串
+		2:	char str[] = "Hello:Linux:Hello:Python";
+			char *p = strtok(str,":")				// 双引号
+			int counter = 0;
+			while(p != NULL){
+				counter ++;
+				printf("%s ",p);
+				strtok(NULL, ":");
+			}printf("\n");
+			printf("counter:%d\n",counter);
+
+9:定位字符串函数
+	char *strchr(const char *s, int c);
+	char *strrchar(const char *s, int c);
+		1:strchar 正向查找, strrchr 反向查找
+		2:存在返回字符 c 在 字符串 s 中的位置,否则 返回 NULL
+		3: char* str2 = strchr(str6, 'l');
+	
+10:获得(截取)子字符串函数
+	char *strstr(const char* haystack, const char* needle);
+		1:判断 haystack 指向的字符串 是否包含 needle 指向的字符串
+		2:包含返回 needle 指向的字符串在 haystack 指向的字符串中的位置,
+		  否则返回 NULL
+		3	char *str9 = "hello";
+			char *str10 = "my hello world";
+			strstr(str10, str9);
+
+11:内存清空/拷贝函数
+	void *memset(void *s, int c, size_t n);
+	void *memcpy(void *dest, const void *src, size_t n);
+		1:	char *src = "hello china";
+			char dest[30];
+			memset(dest, 0, sizeof(dest));
+			memcpy(dest, src, sizeof(dest)-1);
+		2:memcpy(dest, src, sizeof(dest)-1) 的原因是保留 dest 字符数组中的最后
+		  一个 '\0' 字符,否则可能在输出 dest 时出现乱码
+
+其他
+	man string
+示例
+	string_fun.c		// 各种字符串函数的使用
+	strcpy_test.c		// strcpy 函数的陷阱
+	string_copy.c		// 案例:不使用标准库函数完成字符串的复制

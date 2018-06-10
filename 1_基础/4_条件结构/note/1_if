@@ -1,0 +1,51 @@
+1:条件结构的作用
+	1:条件结构的种类
+		1: if 语句
+		2: switch 语句
+		3: 条件运算符(?:)
+
+
+2:if 语句的语法结构
+	1:第一种语法形式:
+		if(表达式) 语句;
+			// 表达式可以是: 关系表达式,算数表达式,逻辑表达式
+	2:第二种语法形式:
+		if(表达式)
+			语句1;
+		else
+			语句2;
+	3:第三种形式:
+		if(表达式1)
+			语句1;
+		else if(表达式2)
+			语句2;
+		else if(表达式3)
+			语句3;
+			...
+		else if(表达式m)
+			语句m;
+		else
+			语句n;
+	4:if语句的嵌套
+		if(表达式)
+			if语句;
+		或者
+		if(表达式)
+			if语句
+		else
+			if语句
+	5:嵌套配对问题:
+		1:在嵌套内的 if 语句可能又是 if-else 型,这将会出现多个 if 和多个 else
+		  重叠的情况,这时要特别注意 if 和 else 的配对问题
+		2:为了避免二义性,C语言规定 else 总是与它前面最近的 if 配对
+		3:大括号可以避免二义性
+
+3:ctype.h 中的几个函数
+	isalpha(char)		是否为字母
+	isupper(char)		是否为大写字母
+	toupper(char)		转换为大写字母
+	islower(char)		是否为小写字母
+	tolower(char)		转换为小写字母
+	isdigit(char)		是否为数字
+	ispunct(char)		是否为标点符号
+	isspace(char)		是否为空白字符

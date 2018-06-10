@@ -1,0 +1,56 @@
+1:工作环境相关命令:
+	命令格式						含义
+	set args 运行时的参数			指定运行时参数,如 set args 2
+	show args						查看设置好的运行参数
+	path dir						设定程序的运行路径
+	show paths						查看程序的运行路径
+	set environment var [=value]	设置环境变量
+	set var=value					修改运行时变量的值
+	show environment[var]			查看环境变量
+	cd dir							进入到 dir 目录,相当于 shell 中的 cd 命令
+	pwd								显示当前工作目录
+	shell command					运行 shell 的 command 命令
+
+
+2:设置断点和恢复命令
+	命令格式							含义
+	info b								查看所设断点
+	break(b) 行号或函数名 <条件表达式>	设置断点
+	tbreak 行号或函数名 <条件表达式>	设置临时断点,到达后自动删除
+	delete [断点号]						删除指定断点,其断点号为"info b"中的第一
+										栏. 若缺省断点号则删除所有断点
+	disable [断点号]					停止指定断点,使用"info b"仍能查看此断点.
+										同 delete 一样, 缺省断点号则停止所有断点
+	enable [断点号]						激活指定断点,即激活被 disable 停止的断点
+	condition [断点号] <条件表达式>		修改对应断点的条件
+	ignore [断点号] <num>				在程序执行中,忽略对应断点 num 次
+	step(s)								单步恢复程序运行,且进入函数调用
+	next(n)								单步恢复程序运行,但不仅如函数调用
+	until(u) 行号						跳到指定行
+	finish								运行程序,直到当前函数完成返回
+	continue(c)							继续执行函数,直到函数结束或遇到新的断点
+
+
+3:查看源码相关命令
+	命令格式						含义
+	list(l) <行号>|<函数名>			查看指定位置代码
+	file [文件名]					加载指定文件
+	forward-search	正则表达式		源代码向前搜索
+	reverse-search	正则表达式		源代码向后搜索
+	show directories				显示定义了的原文件搜索路径
+	info line						显示加载到 gdb 内存中的代码
+	disassemble 函数名				查看指定函数的返汇编代码
+
+
+4:查看运行数据相关命令
+	命令格式						含义
+	print(p) 表达式|变量			查看程序运行时对应表达式和变量的值
+	x/<n/f/u> <addr>
+		查看内存变量内容,其中 n 为整数表示显示内存的长度, f 表示显示的格式(d 表
+		示十进制, x表示十六进制, o表示八进制 t表示二进制), u 表示从当前地址往后
+		请求显示的字节数, <addr> 表示变量的内存地址
+	display 表达式
+		设定在单步运行或其他情况下,自动显示的对应表达式的内容(如:display /i $pc
+		显示c代码和汇编代码)
+		display /i $pc
+		r
